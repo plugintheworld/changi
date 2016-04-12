@@ -12,7 +12,7 @@ namespace :changi do
   end
 
   def categories
-    entries.map { |x| x[:category] } + Changi.configuration.default_categories
+    (entries.map { |x| x[:category] } + Changi.configuration.default_categories).uniq
   end
 
   def make_entry_name
