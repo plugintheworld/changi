@@ -9,7 +9,7 @@ Helps you maintain a `changelog.md` without constant merge conflicts.
 Add this to your `Rakefile`:
 
 ```
-require 'changi'
+require 'changi/tasks'
 ```
 
 ## Usage
@@ -39,7 +39,7 @@ to your main `changelog.md` file.
 
 It will also try to `git rm` changelog entry files.
 
-Changelog format looks like this:
+Default changelog format looks like this:
 
 ```
 # <release no.>, <date>[, <release notes>]
@@ -67,3 +67,6 @@ Changi.configure do |config|
   config.default_categories = []
 end
 ```
+
+For more customization, please refer to the code. There's ways to change entry attributes,
+the changelog template, the way the main changelog is updated, etc.
