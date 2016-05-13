@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'changi'
-  s.version     = '0.1.0'
+  s.version     = '0.2.0'
   s.license     = 'MIT'
   s.summary     = 'Tiny library of changelog management rake tasks.'
   s.description = 'Manages a set of changelog entries for you and combines them to a changelog file when you release.'
