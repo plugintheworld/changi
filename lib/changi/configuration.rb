@@ -17,7 +17,15 @@ module Changi
 <% entry_set.entries_by_category.each do |category, entries| %>
 ## <%= category %>
 
-<%= entries.map { |e| e.text.map.with_index { |l, i| i == 0 ? "* \#{l}" : "  \#{l}" }.join("\n") }.join("\n") %>
+<%=
+  entries.map do |e|
+    if e.text.is_a?(Array)
+      e.text.map.with_index { |l, i| i == 0 ? "* \#{l}" : "  \#{l}" }.join("\n")
+    else
+      "* \#{e.text.gsub("\n", ' ')}"
+    end
+  end.join("\n")
+%>
 <% end %>
 eod
       end
