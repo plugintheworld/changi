@@ -1,4 +1,5 @@
 require 'changi/reader/string_reader'
+require 'changi/reader/multiline_reader'
 require 'changi/reader/category_reader'
 require 'changi/updater/prepend_updater'
 require 'changi/flexible_attributes'

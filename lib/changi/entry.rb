@@ -15,7 +15,7 @@ module Changi
     end
 
     define_attribute :category, reader: Reader::CategoryReader
-    define_attribute :text, opts: { required: true }
+    define_attribute :text, reader: Reader::MultilineReader, opts: { required: true }
 
     attr_reader :entry_set
 
