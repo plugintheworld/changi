@@ -17,16 +17,12 @@ module Changi
       @entries ||= yamls.map { |yml| Entry.load self, yml }
     end
 
-    def entries_by_category
-      entries.group_by &:category
-    end
-
     def previous_categories
-      entries.map &:category
+      entries.map(&:category)
     end
 
     def destroy_all
-      entries.each &:destroy
+      entries.each(&:destroy)
     end
 
     private
@@ -40,10 +36,12 @@ module Changi
     end
 
     def make_entry_name
-      if git_branch = `git rev-parse --abbrev-ref HEAD 2>/dev/null`.strip
-        "#{Time.now.strftime('%y%m%d%H%M%S')}_from_#{git_branch}.yml"
-      else
+      git_branch = `git rev-parse --abbrev-ref HEAD 2>/dev/null`.strip
+
+      if git_branch.empty?
         "#{Time.now.strftime('%y%m%d%H%M%S')}.yml"
+      else
+        "#{Time.now.strftime('%y%m%d%H%M%S')}_from_#{git_branch}.yml"
       end
     end
   end

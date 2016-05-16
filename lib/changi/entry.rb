@@ -6,11 +6,11 @@ module Changi
 
     class << self
       def build entry_set, yaml_path
-        new(entry_set, yaml_path).tap &:read_in_attributes
+        new(entry_set, yaml_path).tap(&:read_in_attributes)
       end
 
       def load entry_set, yaml_path
-        new(entry_set, yaml_path).tap &:read_in_yaml
+        new(entry_set, yaml_path).tap(&:read_in_yaml)
       end
     end
 
@@ -34,15 +34,21 @@ module Changi
     end
 
     def destroy
-      unless system "git rm '#{@path}' >/dev/null 2>&1"
-        FileUtils.rm_f @path
-      end
+      git_rm || file_rm
     end
 
     private
 
     def to_yaml
       self.class.attribute_names.map { |name| [name, send(name.to_sym)] }.to_h.to_yaml
+    end
+
+    def git_rm
+      system "git rm '#{@path}' >/dev/null 2>&1"
+    end
+
+    def file_rm
+      FileUtils.rm_f @path
     end
   end
 end

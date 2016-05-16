@@ -1,0 +1,14 @@
+Style/Documentation:
+  Enabled: false
+
+Style/MethodDefParentheses:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 30
+
+Metrics/AbcSize:
+  Max: 30

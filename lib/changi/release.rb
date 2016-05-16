@@ -4,7 +4,7 @@ module Changi
 
     class << self
       def build
-        new.tap &:read_in_attributes
+        new.tap(&:read_in_attributes)
       end
 
       def demo

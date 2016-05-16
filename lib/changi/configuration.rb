@@ -14,7 +14,7 @@ module Changi
         config.updater            = Updater::PrependUpdater
         config.changelog_template = <<-eod
 # <%= release.version %>, <%= Time.now.strftime('%Y-%m-%d') %><%= release.notes and ", \#{release.notes}" %>
-<% entry_set.entries_by_category.each do |category, entries| %>
+<% entry_set.entries.group_by(&:category).each do |category, entries| %>
 ## <%= category %>
 
 <%=

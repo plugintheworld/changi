@@ -2,11 +2,11 @@ module Changi
   module Reader
     class CategoryReader < StringReader
       def read attribute, owner
-        fail 'CategoryReader can only be used for Entry attributes.' unless owner.is_a? Entry
+        raise 'CategoryReader can only be used for Entry attributes.' unless owner.is_a? Entry
 
         cli.say "#{attribute[:name].capitalize}:\n"
         cli.choose do |menu|
-          menu.choices *categories(owner.entry_set)
+          menu.choices(*categories(owner.entry_set))
           menu.choice 'Other (create new)' do
             cli.ask "Please insert #{attribute[:name]}:"
           end

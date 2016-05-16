@@ -6,7 +6,7 @@ module Changi
     attr_reader :release
 
     def initialize config, entry_set, release
-      @config  = config
+      @config    = config
       @entry_set = entry_set
       @release   = release
     end

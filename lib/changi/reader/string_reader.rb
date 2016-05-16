@@ -3,7 +3,7 @@ require 'highline'
 module Changi
   module Reader
     class StringReader
-      def read attribute, owner
+      def read attribute, _
         cli.ask("#{attribute[:name]}: ").tap do |x|
           if attribute[:opts][:required] && [nil, ''].include?(x)
             abort "required #{attribute[:name]} attribute empty, abort"

@@ -3,7 +3,7 @@ require 'tempfile'
 module Changi
   module Reader
     class MultilineReader
-      def read attribute, owner
+      def read attribute, _
         tmpfile = Tempfile.new 'changi'
 
         intro tmpfile, attribute
@@ -28,8 +28,8 @@ module Changi
         tmpfile.puts
         tmpfile.puts
         tmpfile.puts "# Please enter #{attribute[:name]} above."
-        tmpfile.puts "# Lines starting with # will be ignored."
-        tmpfile.puts "# Empty tmpfile will abort the process." if attribute[:opts][:required]
+        tmpfile.puts '# Lines starting with # will be ignored.'
+        tmpfile.puts '# Empty tmpfile will abort the process.' if attribute[:opts][:required]
         tmpfile.sync
         tmpfile.close
       end
@@ -42,7 +42,7 @@ module Changi
 
       def editor
         editor_tests.lazy.map(&:call).find { |e| !(e.nil? || e.empty?) }.tap do |e|
-          fail 'could not detect editor' unless e
+          raise 'could not detect editor' unless e
         end
       end
 

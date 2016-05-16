@@ -14,7 +14,7 @@ module Changi
 
         attributes << {
           name: name,
-          reader: (block_given? ? block : ->(*args) { reader.new.read *args }),
+          reader: (block_given? ? block : ->(*args) { reader.new.read(*args) }),
           opts:   opts
         }
       end
