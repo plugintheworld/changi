@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.authors     = ['Mobisol GmbH']
   s.email       = 'dev@plugintheworld.com'
   s.files       = Dir['lib/**/*rb']
-  s.homepage    = 'https://github.org/plugintheworld/changi'
+  s.homepage    = 'https://github.com/plugintheworld/changi'
 
   s.add_dependency 'rake', '~> 10.4'
   s.add_dependency 'highline', '~> 1.7'
