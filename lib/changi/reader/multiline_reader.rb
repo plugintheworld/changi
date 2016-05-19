@@ -8,8 +8,14 @@ module Changi
 
         intro tmpfile, attribute
 
-        unless system "#{editor} '#{tmpfile.path.strip}'"
+        rc = system "#{editor} '#{tmpfile.path.strip}'"
+        if rc == false
           abort 'editor returned with non-zero exit status, abort'
+        elsif rc.nil?
+          puts "editor '#{editor}' not found, trying nano..."
+          unless system "name '#{tmpfile.path.strip}'"
+            abort 'nano not found or non-zero exit status, abort'
+          end
         end
 
         read_and_strip(tmpfile).tap do |data|
@@ -48,6 +54,7 @@ module Changi
 
       def editor_tests
         [
+          -> { ENV['CHANGI_EDITOR'] },
           -> { ENV['EDITOR'] },
           -> { `git config core.editor`.strip },
           -> { editor_exists?('nano') && 'nano' },
