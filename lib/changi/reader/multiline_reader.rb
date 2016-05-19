@@ -47,7 +47,7 @@ module Changi
       end
 
       def editor
-        editor_tests.lazy.map(&:call).find { |e| !(e.nil? || e.empty?) }.tap do |e|
+        editor_tests.lazy.map(&:call).find { |e| !(e.nil? || e.empty?) && editor_exists?(e) }.tap do |e|
           raise 'could not detect editor' unless e
         end
       end
@@ -57,8 +57,8 @@ module Changi
           -> { ENV['CHANGI_EDITOR'] },
           -> { ENV['EDITOR'] },
           -> { `git config core.editor`.strip },
-          -> { editor_exists?('nano') && 'nano' },
-          -> { editor_exists?('vim') && 'vim' }
+          -> { 'nano' },
+          -> { 'vim' }
         ]
       end
 
