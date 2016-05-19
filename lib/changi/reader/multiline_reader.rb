@@ -63,6 +63,9 @@ module Changi
       end
 
       def editor_exists? app
+        # Assume existence of editor specifically set for us.
+        return true if app == ENV['CHANGI_EDITOR']
+
         system "command -v #{app} >/dev/null 2>&1"
       end
     end
